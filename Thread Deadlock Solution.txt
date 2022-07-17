@@ -1,0 +1,41 @@
+- Giải pháp cho tình huống deadlock này cũng khá đơn giản. Chỉ cần đổi lại thứ tự lấy
+object của thằng ThreadB là được (vì thằng ThreadA không bị cản trở khi nó lấy A và B,
+nên thằng ThreadB cũng có thế lấy được 2 object thoải mái)
+
+public class MyThread {
+    
+public static Object lockA = new Object();
+public static Object lockB = new Object();
+   
+public static void main(String args[]) {
+  ThreadA a = new ThreadA();
+  ThreadB b = new ThreadB();
+  a.start();
+  b.start();
+}
+   
+private static class ThreadA extends Thread {
+  public void run() {
+	
+    synchronized (lockA) {
+      System.out.println("Thread A: Holding lock A");
+      System.out.println("Thread A: Waiting for lock B");
+      synchronized (lockB) {
+        System.out.println("Thread A: Holding lock A & B");
+      }
+    }
+  }
+}
+   
+private static class ThreadB extends Thread {
+  public void run() {
+    synchronized (lockA) {
+      System.out.println("Thread B: Holding lock A");
+      System.out.println("Thread B: Waiting for lock B");
+      synchronized (lockB) {
+        System.out.println("Thread A: Holding lock A & B");
+      }
+    }
+  }
+}
+}
