@@ -1,13 +1,3 @@
-- Deadlock xảy ra trong ví dụ này là do ThreadA không thể lấy được lockB,
-nên nó giữ lockA cho đến khi lấy được lockB, nhưng lockB lại được giữ bởi ThreadB.
-Do 2 thằng chạy gần như cùng lúc nên 1 thằng lấy A và 1 thằng lấy B,
-đồng thời cũng request thằng còn lại cùng lúc,
-vậy nên xảy ra trường hợp deadlock khi 2 bên đợi nhau đến chết.
-- Em copy code vào notepad sau khi complier trên web nên mong anh thông cảm phần 
-format code (em lười cài intelliJ :D), cũng như phần note em viết xD (em sợ hơi khó hiểu)
-
-Em cảm ơn và chúc anh có một tuần làm việc tràn đầy năng lượng ༼ つ ◕_◕ ༽つ
-
 public class MyThread {
     
 public static Object lockA = new Object();
