@@ -1,7 +1,3 @@
-- Giải pháp cho tình huống deadlock này cũng khá đơn giản. Chỉ cần đổi lại thứ tự lấy
-object của thằng ThreadB là được (vì thằng ThreadA không bị cản trở khi nó lấy A và B,
-nên thằng ThreadB cũng có thế lấy được 2 object thoải mái)
-
 public class MyThread {
     
 public static Object lockA = new Object();
